@@ -1,0 +1,120 @@
+/* You can add global styles to this file, and also import other style files */
+/* General Container Styles */
+.container {
+    max-width: 90%;
+    margin: auto;
+    padding: 20px;
+    background: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title Styling */
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Add User Button */
+  .add-user-btn {
+    display: block;
+    margin: 10px auto;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .add-user-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Custom Table Styling */
+  .custom-table {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Table Header */
+  .custom-table th {
+    background-color: #4c87af;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+  
+  /* Table Cells */
+  .custom-table td {
+    padding: 12px;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Alternate Row Colors */
+  .custom-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Hover Effect */
+  .custom-table tbody tr:hover {
+    background-color: #e0e0e0;
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.02);
+  }
+  
+  /* Button Styles */
+  .btn-sm {
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-sm:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  
+  /* Edit Button */
+  .btn-warning {
+    background-color: #acf312;
+    color: rgb(63, 7, 7);
+    border: none;
+  }
+  
+  /* Delete Button */
+  .btn-danger {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .custom-table th,
+    .custom-table td {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .btn-sm {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  
+    .add-user-btn {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+  
