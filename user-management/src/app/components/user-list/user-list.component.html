@@ -1,7 +1,22 @@
 <div class="container">
   <h2 class="title">User List</h2>
-  <button class="btn btn-primary add-user-btn" (click)="addUser()">➕ Add User</button>
+  <div class="button-group d-flex gap-2">
+    <button class="btn btn-primary equal-btn" (click)="addUser()">+ Add User</button>
   
+    <button class="btn btn-success equal-btn" (click)="downloadExcel()">
+      <i class="fas fa-file-excel"></i> Export
+    </button>
+  
+    <!-- Hidden file input -->
+    <input type="file" accept=".xlsx, .xls" (change)="onFileSelected($event)" hidden #fileInput>
+  
+    <button class="btn btn-info equal-btn" (click)="fileInput.click()">
+      <i class="fas fa-file-import"></i> Import
+    </button>
+  </div>
+  
+  
+
   <div class="table-responsive">
     <table class="table mt-3 custom-table">
       <thead>

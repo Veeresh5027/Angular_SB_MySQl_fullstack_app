@@ -66,4 +66,48 @@ export class UserListComponent implements OnInit {
   addUser(): void {
     this.router.navigate(['/add-user']);
   }
+
+  downloadExcel() {
+    this.userService.exportToExcel().subscribe(
+      (blob: Blob) => {
+        // Create download link
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'users_export_' + new Date().toISOString().slice(0, 10) + '.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => {
+        console.error('Error exporting to Excel:', error);
+        // Add your error handling here (e.g., toast notification)
+      }
+    );
+  }
+
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    
+    if (!file) {
+      this.toastr.error('No file selected.', 'Error');
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append('file', file);
+  
+    this.userService.importFromExcel(formData).subscribe({
+      next: (message: string) => {
+        this.toastr.success(message, 'Success');
+        this.fetchUsers();
+      },
+      error: (errorMessage: string) => {
+        this.toastr.error(errorMessage, 'Error');
+      }
+    });
+  }
+  
+
 }

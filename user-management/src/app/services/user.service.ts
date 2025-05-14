@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 export interface User {
   id?: number; // Optional ID for new users
@@ -44,5 +44,25 @@ export class UserService {
   // ✅ Delete a user
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  exportToExcel(): Observable<Blob> {
+    return this.http.get(`${this.apiUrl}/export`, {
+      responseType: 'blob',
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      })
+    });
+  }
+
+  importFromExcel(formData: FormData): Observable<string> {
+    return this.http.post<{message?: string, error?: string}>(`${this.apiUrl}/import`, formData).pipe(
+      map(response => response.message || response.error || 'Operation completed'),
+      catchError(error => {
+        const errorMsg = error.error?.message || error.error?.error || error.message || 'Failed to import users';
+        return throwError(() => errorMsg);
+      })
+    );
   }
 }
